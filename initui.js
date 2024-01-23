@@ -36,7 +36,47 @@ Div1.appendChild(bt)
 
 function displayempdata(id)
 {
-  
+  Div4.innerHTML=""
+  let h=document.createElement("h2")
+  h.textContent="Employee details"
+  Div4.appendChild(h)
+  var table = document.createElement("table");
+
+    // Create the header row
+    var headerRow = table.insertRow(0);
+    var headerCell1 = headerRow.insertCell(0);
+    var headerCell2 = headerRow.insertCell(1);
+    headerCell1.textContent = "Label 1";
+    headerCell2.textContent = "Label 2";
+
+    // Create data rows
+    for (var i = 1; i <= 4; i++) {
+        var row = table.insertRow(i);
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        cell1.textContent = "Data " + i + "A";
+        cell2.textContent = "Data " + i + "B";
+    }
+
+    // Append the table to the body
+    Div4.appendChild(table);
+    var edit = document.createElement('button');
+    edit.id="edit"
+    edit.type = 'button';
+    edit.textContent = 'edit';
+    Div4.appendChild(edit)
+    edit.addEventListener("click",function(){      
+    })
+   
+    var del = document.createElement('button');
+    del.type = 'button';
+    del.id="del"
+    del.textContent = 'delete';
+    Div4.appendChild(del)
+    del.addEventListener("click",function(){      
+    })
+
+    
 }
 function display()
 {
@@ -50,9 +90,9 @@ function display()
    displaybt.type = 'button';
    displaybt.textContent = empname;
     Div3.appendChild(displaybt);
-    // displaybt.addEventListener("click",function(){
-    //       displayempdata(id)
-    // }) 
+    displaybt.addEventListener("click",function(){
+          displayempdata(id+1)
+    }) 
     
   }
   
@@ -141,6 +181,7 @@ function addEmpForm(){
     submitButton.addEventListener("click",function(){
           updatedata(id++);
           display()
+          
     })
     
     }
