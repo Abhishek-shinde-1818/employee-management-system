@@ -40,18 +40,22 @@ function displayempdata(id)
 }
 function display()
 {
+  Div3.innerHTML=""
+  
   let arr=Object.keys(empdata)
-  for(let id=1;id<arr.length;id++)
+  for(let id=0;id<arr.length;id++)
   {
-   let empname=empdata[id].name
+   let empname=empdata[id+1].name
    var displaybt = document.createElement('button');
    displaybt.type = 'button';
    displaybt.textContent = empname;
     Div3.appendChild(displaybt);
-    displaybt.addEventListener("click",function(){
-          displayempdata(id)
-    }) 
+    // displaybt.addEventListener("click",function(){
+    //       displayempdata(id)
+    // }) 
+    
   }
+  
 }
 function updatedata(id)
 {
@@ -67,8 +71,8 @@ function updatedata(id)
    obj.designation=designation
    obj.department=department
    empdata[id]=obj
-   console.log(empdata)
-   display()
+   
+   
 }
 function addEmpForm(){
     let Div5 = document.createElement("div");
@@ -136,6 +140,7 @@ function addEmpForm(){
     form.appendChild(submitButton);
     submitButton.addEventListener("click",function(){
           updatedata(id++);
+          display()
     })
     
     }
