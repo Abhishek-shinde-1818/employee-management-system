@@ -1,3 +1,5 @@
+let empdata={}
+
 function initui(){
 
 
@@ -5,8 +7,10 @@ let rootDiv=document.getElementById("root")
 let Div1 = document.createElement("div");
 Div1.id = "navbar";
 rootDiv.appendChild(Div1)
-let text=document.createTextNode("AYS SOFTWARE SOLUTION")
-Div1.appendChild(text)
+let logo=document.createElement("img")
+logo.src="ays.jpg"
+logo.id="ayslogo"
+Div1.appendChild(logo)
 
 let Div2 = document.createElement("div");
 Div2.id = "content";
@@ -30,9 +34,42 @@ bt.onclick = function(){
 
 Div1.appendChild(bt)
 
-
-
-
+function displayempdata(id)
+{
+  
+}
+function display()
+{
+  let arr=Object.keys(empdata)
+  for(let id=1;id<arr.length;id++)
+  {
+   let empname=empdata[id].name
+   var displaybt = document.createElement('button');
+   displaybt.type = 'button';
+   displaybt.textContent = empname;
+    Div3.appendChild(displaybt);
+    displaybt.addEventListener("click",function(){
+          displayempdata(id)
+    }) 
+  }
+}
+function updatedata(id)
+{
+   const obj={}
+   let empid=id
+   let name=document.getElementById("name").value
+   let salary=document.getElementById("salary").value
+   let designation=document.getElementById("designation").value
+   let department=document.getElementById("department").value
+   obj.empid=empid
+   obj.name=name
+   obj.salary=salary
+   obj.designation=designation
+   obj.department=department
+   empdata[id]=obj
+   console.log(empdata)
+   display()
+}
 function addEmpForm(){
     let Div5 = document.createElement("div");
     Div5.id = "form";
@@ -40,7 +77,7 @@ function addEmpForm(){
     // Create form element
     var form = document.createElement('form');
     form.id = 'employeeForm';
-   
+    Div5.appendChild(form)
     // Create and append label and input for Name
     var nameLabel = document.createElement('label');
     nameLabel.textContent = 'Name:';
@@ -92,11 +129,14 @@ function addEmpForm(){
     departmentInput.required = true;
     form.appendChild(departmentInput);
 
-    
+    let id=1
     var submitButton = document.createElement('button');
     submitButton.type = 'button';
     submitButton.textContent = 'Submit';
     form.appendChild(submitButton);
-    Div5.appendChild(form)
+    submitButton.addEventListener("click",function(){
+          updatedata(id++);
+    })
+    
     }
 }
